@@ -266,6 +266,8 @@ static NSString *const kPresentationSize         = @"presentationSize";
 - (void)initializePlayer {
     _asset = [AVURLAsset URLAssetWithURL:self.assetURL options:self.requestHeader];
     _playerItem = [AVPlayerItem playerItemWithAsset:_asset];
+    _output = [[AVPlayerItemVideoOutput alloc] init];
+    [_playerItem addOutput:_output];
     _player = [AVPlayer playerWithPlayerItem:_playerItem];
     _imageGenerator = [AVAssetImageGenerator assetImageGeneratorWithAsset:_asset];
 
@@ -305,16 +307,17 @@ static NSString *const kPresentationSize         = @"presentationSize";
     /// 没有网络
     if ([ZFReachabilityManager sharedManager].networkReachabilityStatus == ZFReachabilityStatusNotReachable) return;
     self.isBuffering = YES;
-    
     // 需要先暂停一小会之后再播放，否则网络状况不好的时候时间在走，声音播放不出来
-    [self pause];
+//    [self pause];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         // 如果此时用户已经暂停了，则不再需要开启播放了
         if (!self.isPlaying && self.loadState == ZFPlayerLoadStateStalled) {
             self.isBuffering = NO;
             return;
         }
-        [self play];
+        if (self.isPlaying) {
+            [self play];
+        }
         // 如果执行了play还是没有播放则说明还没有缓存好，则再次缓存一段时间
         self.isBuffering = NO;
         if (!self.playerItem.isPlaybackLikelyToKeepUp) [self bufferingSomeSecond];
