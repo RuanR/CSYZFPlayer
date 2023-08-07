@@ -23,28 +23,28 @@ Pod::Spec.new do |s|
     s.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
 
     s.subspec 'Core' do |core|
-        core.source_files = 'CSYZFPlayer/Classes/Core/**/*'
-        core.public_header_files = 'CSYZFPlayer/Classes/Core/**/*.h'
+        core.source_files = 'ZFPlayer/Classes/Core/**/*'
+        core.public_header_files = 'ZFPlayer/Classes/Core/**/*.h'
         core.frameworks = 'UIKit', 'MediaPlayer', 'AVFoundation'
     end
     
     s.subspec 'ControlView' do |controlView|
-        controlView.source_files = 'CSYZFPlayer/Classes/ControlView/**/*.{h,m}'
-        controlView.public_header_files = 'CSYZFPlayer/Classes/ControlView/**/*.h'
-        controlView.resource = 'CSYZFPlayer/Classes/ControlView/ZFPlayer.bundle'
-        controlView.dependency 'CSYZFPlayer/Core'
+        controlView.source_files = 'ZFPlayer/Classes/ControlView/**/*.{h,m}'
+        controlView.public_header_files = 'ZFPlayer/Classes/ControlView/**/*.h'
+        controlView.resource = 'ZFPlayer/Classes/ControlView/ZFPlayer.bundle'
+        controlView.dependency 'ZFPlayer/Core'
     end
     
     s.subspec 'AVPlayer' do |avPlayer|
-        avPlayer.source_files = 'CSYZFPlayer/Classes/AVPlayer/**/*.{h,m}'
-        avPlayer.public_header_files = 'CSYZFPlayer/Classes/AVPlayer/**/*.h'
+        avPlayer.source_files = 'ZFPlayer/Classes/AVPlayer/**/*.{h,m}'
+        avPlayer.public_header_files = 'ZFPlayer/Classes/AVPlayer/**/*.h'
         avPlayer.dependency 'CSYZFPlayer/Core'
     end
     
     s.subspec 'ijkplayer' do |ijkplayer|
-        ijkplayer.source_files = 'CSYZFPlayer/Classes/ijkplayer/*.{h,m}'
-        ijkplayer.public_header_files = 'CSYZFPlayer/Classes/ijkplayer/*.h'
-        ijkplayer.dependency 'CSYZFPlayer/Core'
+        ijkplayer.source_files = 'ZFPlayer/Classes/ijkplayer/*.{h,m}'
+        ijkplayer.public_header_files = 'ZFPlayer/Classes/ijkplayer/*.h'
+        ijkplayer.dependency 'ZFPlayer/Core'
         ijkplayer.dependency 'IJKMediaFramework'
     end
     
