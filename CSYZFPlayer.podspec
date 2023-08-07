@@ -32,7 +32,7 @@ Pod::Spec.new do |s|
         controlView.source_files = 'ZFPlayer/Classes/ControlView/**/*.{h,m}'
         controlView.public_header_files = 'ZFPlayer/Classes/ControlView/**/*.h'
         controlView.resource = 'ZFPlayer/Classes/ControlView/ZFPlayer.bundle'
-        controlView.dependency 'ZFPlayer/Core'
+        controlView.dependency 'CSYZFPlayer/Core'
     end
     
     s.subspec 'AVPlayer' do |avPlayer|
@@ -44,7 +44,7 @@ Pod::Spec.new do |s|
     s.subspec 'ijkplayer' do |ijkplayer|
         ijkplayer.source_files = 'ZFPlayer/Classes/ijkplayer/*.{h,m}'
         ijkplayer.public_header_files = 'ZFPlayer/Classes/ijkplayer/*.h'
-        ijkplayer.dependency 'ZFPlayer/Core'
+        ijkplayer.dependency 'CSYZFPlayer/Core'
         ijkplayer.dependency 'IJKMediaFramework'
     end
     
